@@ -30111,6 +30111,7 @@ var __webpack_exports__ = {};
 // @ts-check
 
 const path = __nccwpck_require__(6928);
+const fs = __nccwpck_require__(9896);
 const core = __nccwpck_require__(7484);
 const tc = __nccwpck_require__(3472);
 
@@ -30133,11 +30134,13 @@ async function setup() {
             `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/golf-windows-amd64.zip`
         );
         pathToCLI = await tc.extractZip(pathToZip);
+        fs.renameSync(path.join(pathToCLI, 'golf-windows-amd64.exe'), path.join(pathToCLI, 'golf.exe'));
     } else if (os === 'Linux') {
         const pathToTar = await tc.downloadTool(
             `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/golf-linux-amd64.tar.gz`
         );
         pathToCLI = await tc.extractTar(pathToTar);
+        fs.renameSync(path.join(pathToCLI, 'golf-linux-amd64'), path.join(pathToCLI, 'golf'));
     } else {
         throw new Error(`OS ${os} not supported`);
     }
