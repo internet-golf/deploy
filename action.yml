@@ -6,4 +6,4 @@ inputs:
   version:
     required: false
     # TODO: update automatically?
-    default: "v0.1.4"
+    default: "v0.1.8"
