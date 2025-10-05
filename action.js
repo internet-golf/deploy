@@ -10,7 +10,8 @@ async function setup() {
 
     // Download the specific version of the tool, e.g. as a tarball
     const pathToCLI = await tc.downloadTool(
-        `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/${exe}`
+        `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/${exe}`,
+        os === 'Windows' ? 'golf.exe' : 'golf' // ??? feels like it should have .exe
     );
 
     // Expose the tool by adding it to the PATH
