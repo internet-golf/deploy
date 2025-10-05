@@ -1,3 +1,5 @@
+// @ts-check
+
 const path = require('path');
 const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
@@ -7,15 +9,30 @@ async function setup() {
     const version = core.getInput('version');
 
     const os = process.env.RUNNER_OS;
-    const exe = os === 'Windows' ? 'golf-windows-amd64.exe' : 'golf-linux-amd64';
 
-    // Download the specific version of the tool, e.g. as a tarball
-    const pathToCLI = await tc.downloadTool(
-        `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/${exe}`,
-        os === 'Windows' ? 'golf.exe' : 'golf' // ??? feels like it should have .exe
-    );
+    if (!os) {
+        throw new Error("Cannot discern OS from environment variable RUNNER_OS");
+    }
 
-    console.log(`downloaded ${exe} (${version}) to ${pathToCLI}. Adding to path...`)
+    let pathToCLI = '';
+    // this unnecessarily downloads both the server and the client, since both
+    // are in the archive. however, the archive is needed to store the +x
+    // permissions for Linux...
+    if (os === 'Windows') {
+        const pathToZip = await tc.downloadTool(
+            `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/golf-windows-amd64.zip`
+        );
+        pathToCLI = await tc.extractZip(pathToZip);
+    } else if (os === 'Linux') {
+        const pathToTar = await tc.downloadTool(
+            `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/golf-linux-amd64.tar.gz`
+        );
+        pathToCLI = await tc.extractZip(pathToTar);
+    } else {
+        throw new Error(`OS ${os} not supported`);
+    }
+
+    console.log(`downloaded ${version} to ${pathToCLI}. Adding to path...`)
 
     // Expose the tool by adding it to the PATH
     core.addPath(path.dirname(pathToCLI))
