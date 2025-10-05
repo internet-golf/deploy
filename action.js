@@ -38,7 +38,7 @@ async function setup() {
     console.log(`downloaded ${version} to ${pathToCLI}. Adding to path...`)
 
     // Expose the tool by adding it to the PATH
-    core.addPath(path.dirname(pathToCLI))
+    core.addPath(pathToCLI)
 }
 
 setup();
