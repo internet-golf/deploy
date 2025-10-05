@@ -27,7 +27,7 @@ async function setup() {
         const pathToTar = await tc.downloadTool(
             `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/golf-linux-amd64.tar.gz`
         );
-        pathToCLI = await tc.extractZip(pathToTar);
+        pathToCLI = await tc.extractTar(pathToTar);
     } else {
         throw new Error(`OS ${os} not supported`);
     }
