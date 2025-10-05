@@ -1,0 +1,9 @@
+name: "Setup Internet Golf Deployment Client"
+runs:
+  using: node24
+  main: dist/index.js
+inputs:
+  version:
+    required: false
+    # TODO: update automatically?
+    default: "v0.1.4"

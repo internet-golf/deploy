@@ -1,0 +1,24 @@
+{
+  "name": "internet-golf-deploy",
+  "version": "0.0.1",
+  "description": "Github Action to set up the Internet Golf client.",
+  "main": "action.js",
+  "scripts": {
+    "build": "ncc build action.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/internet-golf/deploy.git"
+  },
+  "author": "toBeOfUse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/internet-golf/deploy/issues"
+  },
+  "homepage": "https://github.com/internet-golf/deploy#readme",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/tool-cache": "^2.0.2",
+    "@vercel/ncc": "^0.38.4"
+  }
+}
