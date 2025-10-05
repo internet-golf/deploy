@@ -14,6 +14,8 @@ async function setup() {
         os === 'Windows' ? 'golf.exe' : 'golf' // ??? feels like it should have .exe
     );
 
+    console.log(`downloaded ${exe} (${version}) to ${pathToCLI}. Adding to path...`)
+
     // Expose the tool by adding it to the PATH
     core.addPath(pathToCLI)
 }
