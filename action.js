@@ -1,3 +1,4 @@
+const path = require('path');
 const core = require('@actions/core');
 const tc = require('@actions/tool-cache');
 
@@ -17,7 +18,7 @@ async function setup() {
     console.log(`downloaded ${exe} (${version}) to ${pathToCLI}. Adding to path...`)
 
     // Expose the tool by adding it to the PATH
-    core.addPath(pathToCLI)
+    core.addPath(path.dirname(pathToCLI))
 }
 
 module.exports = setup

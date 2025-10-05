@@ -4,6 +4,7 @@
 /***/ 2380:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
+const path = __nccwpck_require__(6928);
 const core = __nccwpck_require__(7484);
 const tc = __nccwpck_require__(3472);
 
@@ -23,7 +24,7 @@ async function setup() {
     console.log(`downloaded ${exe} (${version}) to ${pathToCLI}. Adding to path...`)
 
     // Expose the tool by adding it to the PATH
-    core.addPath(pathToCLI)
+    core.addPath(path.dirname(pathToCLI))
 }
 
 module.exports = setup
