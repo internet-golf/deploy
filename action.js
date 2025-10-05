@@ -21,4 +21,4 @@ async function setup() {
     core.addPath(path.dirname(pathToCLI))
 }
 
-module.exports = setup
+setup();

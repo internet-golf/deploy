@@ -1,37 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 2380:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const path = __nccwpck_require__(6928);
-const core = __nccwpck_require__(7484);
-const tc = __nccwpck_require__(3472);
-
-async function setup() {
-    // Get version of tool to be installed
-    const version = core.getInput('version');
-
-    const os = process.env.RUNNER_OS;
-    const exe = os === 'Windows' ? 'golf-windows-amd64.exe' : 'golf-linux-amd64';
-
-    // Download the specific version of the tool, e.g. as a tarball
-    const pathToCLI = await tc.downloadTool(
-        `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/${exe}`,
-        os === 'Windows' ? 'golf.exe' : 'golf' // ??? feels like it should have .exe
-    );
-
-    console.log(`downloaded ${exe} (${version}) to ${pathToCLI}. Adding to path...`)
-
-    // Expose the tool by adding it to the PATH
-    core.addPath(path.dirname(pathToCLI))
-}
-
-module.exports = setup
-
-
-/***/ }),
-
 /***/ 4914:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -30138,12 +30107,32 @@ module.exports = parseParams
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(2380);
-/******/ 	module.exports = __webpack_exports__;
-/******/ 	
+var __webpack_exports__ = {};
+const path = __nccwpck_require__(6928);
+const core = __nccwpck_require__(7484);
+const tc = __nccwpck_require__(3472);
+
+async function setup() {
+    // Get version of tool to be installed
+    const version = core.getInput('version');
+
+    const os = process.env.RUNNER_OS;
+    const exe = os === 'Windows' ? 'golf-windows-amd64.exe' : 'golf-linux-amd64';
+
+    // Download the specific version of the tool, e.g. as a tarball
+    const pathToCLI = await tc.downloadTool(
+        `https://github.com/toBeOfUse/internet-golf/releases/download/${version}/${exe}`,
+        os === 'Windows' ? 'golf.exe' : 'golf' // ??? feels like it should have .exe
+    );
+
+    console.log(`downloaded ${exe} (${version}) to ${pathToCLI}. Adding to path...`)
+
+    // Expose the tool by adding it to the PATH
+    core.addPath(path.dirname(pathToCLI))
+}
+
+setup();
+
+module.exports = __webpack_exports__;
 /******/ })()
 ;
