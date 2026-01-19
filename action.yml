@@ -1,4 +1,5 @@
-name: "Setup Internet Golf Deployment Client"
+name: "Set Up Internet Golf Deployment Client"
+description: "Sets up the Internet Golf deployment client."
 runs:
   using: node24
   main: dist/index.js
@@ -6,4 +7,4 @@ inputs:
   version:
     required: false
     # TODO: update automatically?
-    default: "v0.1.9"
+    default: "v0.2.0"
