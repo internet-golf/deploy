@@ -21,9 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # this action sets up the CLI:
-      - uses: internet-golf/deploy@v0.1.0
-        with:
-          version: "v0.1.8"
+      - uses: internet-golf/deploy@v0.2.0
 
         # you can then use the CLI
       - uses: actions/checkout@v5
